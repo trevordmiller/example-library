@@ -1,0 +1,50 @@
+{
+  "name": "example-library",
+  "version": "0.1.0",
+  "description": "An example library scaffold using script-project",
+  "keywords": [],
+  "repository": "trevordmiller/example-library",
+  "author": "Trevor D. Miller (https://trevordmiller.com)",
+  "license": "MIT",
+  "main": "build/index.js",
+  "files": [
+    "package.json",
+    "build"
+  ],
+  "scripts": {
+    "dev": "yarn build -- --watch",
+    "test:watch": "yarn test -- --watch",
+    "verify": "yarn test && yarn lint && yarn build",
+    "test": "jest src",
+    "lint": "eslint src",
+    "build": "babel src -d build -i '**/*.test.js'",
+    "release": "git checkout master && git pull && yarn build && yarn version && git push && git push --tags && npm publish"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es6": true,
+      "node": true,
+      "jest": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    }
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.4.0",
+    "eslint": "^3.19.0",
+    "jest": "^19.0.2"
+  },
+  "dependencies": {}
+}
